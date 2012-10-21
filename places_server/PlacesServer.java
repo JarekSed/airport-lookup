@@ -1,0 +1,23 @@
+import java.rmi.*;
+import java.rmi.server.*;
+
+public class PlacesServer{
+	public static void main(String args[]) {
+		if (args.length != 1) {
+			System.err.println("usage: java PlacesServer rmi_port");
+			System.exit(1);
+		}
+		// Create and install a security manager
+		if (System.getSecurityManager() == null)
+			System.setSecurityManager(new RMISecurityManager());
+		try {
+			int port = Integer.parseInt(args[0]);
+			String url = "//localhost:" + port + "/Places";
+			Naming.rebind(url, new Places());
+			System.out.println("server " + url + " is running...");
+		}
+		catch (Exception e) {
+			System.out.println("Places server failed:" + e.getMessage());
+		}
+	}
+}
