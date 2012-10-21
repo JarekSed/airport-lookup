@@ -1,5 +1,9 @@
 import java.io.Serializable;
 
+/*
+ * Simple class to store data about a place so it can be marshalled for RMI calls.
+ */
+
 public class Place implements Serializable{
     public Place(String name, String state, double latitude, double longitude){
         this.name = name;

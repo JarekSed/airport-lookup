@@ -1,8 +1,11 @@
 import java.rmi.*;
 import java.rmi.server.*;
-
+/*
+ * Server for the Places search. This just sets up the RMI server.
+ */
 public class PlacesServer{
 	public static void main(String args[]) {
+        //TODO: make port optional.
 		if (args.length != 1) {
 			System.err.println("usage: java PlacesServer rmi_port");
 			System.exit(1);

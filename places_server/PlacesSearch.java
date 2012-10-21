@@ -3,14 +3,14 @@ import java.rmi.server.*;
 import java.util.HashMap;
 import java.io.*;
 import java.text.ParseException;
-
-public class PlacesSearch
-extends UnicastRemoteObject
-implements PlacesInterface{
+/*
+ * Search backend for Places. When given a city and state, finds and returns information on it.
+ * Keeps an in-memory lookup table of all our known places and their data.
+ */
+public class PlacesSearch extends UnicastRemoteObject implements PlacesInterface{
 
     public PlacesSearch() throws RemoteException {
         try{
-        System.out.println("initialized the lookup table");
             lookup_table = parse_places_file("places2k.txt");
         } catch (IOException e){
             System.err.println(e.getMessage());
@@ -19,6 +19,8 @@ implements PlacesInterface{
         }
     }
 
+    /* Implementation of PlacesInterface.find_place
+     */
     public Place find_place(String city, String state) throws RemoteException {
         Place place = lookup_table.get(city.toLowerCase() + "," + state.toLowerCase());
         return place;
