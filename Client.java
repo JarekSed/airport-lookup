@@ -20,7 +20,7 @@ public class Client {
       System.out.println("looking up " + url);
       PlacesInterface places = (PlacesInterface)Naming.lookup(url);
 
-      url = "//localhost:" + port + "/AirportsSearch";
+      url = "//localhost:" + port + "/AirportSearch";
       System.out.println("looking up " + url);
       AirportsInterface airports = (AirportsInterface)Naming.lookup(url);
 
@@ -46,7 +46,8 @@ public class Client {
         System.out.println("Could not find any data for " + args[1] + ","+ args[2]);
       }
     } catch(Exception e) {
-      System.err.println("Client exception: " + e.getMessage());
+      System.err.println("Client exception");
+      e.printStackTrace();
     }
   }
 }
