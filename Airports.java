@@ -72,7 +72,7 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
           pointer = pointer.next;
 
         // Add the new airport
-        pointer.next = new Airport(line.substring(1, 4), line.substring(temp_i).trim(), distance, pointer.next);
+        pointer.next = new Airport(line.substring(1, 4), temp_s.substring(temp_i).trim(), distance, pointer.next);
 
         // Nuke the furthest entry from the list
         result_list = result_list.next;
