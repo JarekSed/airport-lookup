@@ -7,10 +7,15 @@ import java.io.Serializable;
 
 public class Airport implements Serializable {
 
-  public Airport (String code, String name, double distance) {
+  public Airport (String code, String name, double distance, Airport next) {
     this.code = code;
     this.name = name;
     this.distance = distance;
+    this.next = next;
+  }
+
+  public Airport (String code, String name, double distance) {
+    this(code, name, distance, null);
   }
 
   public String getName() { return name; }
@@ -20,5 +25,7 @@ public class Airport implements Serializable {
   private String code;
   private String name;
   private double distance;
+
+  public Airport next;
 
 }

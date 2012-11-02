@@ -29,16 +29,17 @@ public class Client {
       if (place != null) {
         System.out.println(place.getName() + ", " + place.getState() + "\t" + place.getLatitude() + ", " + place.getLongitude()); 
 
-        Airport list[] = airports.find_airports(place.getLongitude(), place.getLatitude());
+        Airport list = airports.find_airports(place.getLongitude(), place.getLatitude());
 
         if (list != null) {
-          for (int i = 0; i < 5; i++) {
-            Airport a = list[i];
+          do {
             System.out.println(
-              "code=" + a.getCode() + " name=" + a.getName() +
-              " distance=" + a.getDistance()
+              "code=" + list.getCode() + " name=" + list.getName() +
+              " distance=" + list.getDistance()
             );
-          }
+
+            list = list.next;
+          } while (list != null);
         } else {
           System.out.println("Could not find nearby airports");
         }

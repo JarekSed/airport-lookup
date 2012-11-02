@@ -7,8 +7,9 @@ Airport Lookup Program for Distributed Systems Assignment 4
  * This is done.
 
 * Airport Server -- Yuriy
- * Will finish this tomorrow (Saturday) so we can write and test the client.
-        Although it should be possible to write the client assuming this already works
+ * Generally works, but there is something off with the distance
+      calculation because the results are ridiculous. Will figure
+      out later today (Friday)
 
 * Client -- Russ Frank
   * Simple client implemented, should work
