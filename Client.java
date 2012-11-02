@@ -29,7 +29,7 @@ public class Client {
       if (place != null) {
         System.out.println(place.getName() + ", " + place.getState() + "\t" + place.getLatitude() + ", " + place.getLongitude()); 
 
-        Airport list = airports.find_airports(place.getLongitude(), place.getLatitude());
+        Airport list = airports.find_airports(place.getLatitude(), place.getLongitude());
 
         if (list != null) {
           do {
