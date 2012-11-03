@@ -10,7 +10,7 @@ public class PlacesServer{
     if (args.length == 1 ) {
       port = Integer.parseInt(args[0]);
     } else if (args.length > 1) {
-      System.err.println("usage: java PlacesServer <rmi_port>");
+      System.err.println("usage: java PlacesServer [rmi_port]");
       System.exit(1);
     }
 
