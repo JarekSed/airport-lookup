@@ -28,6 +28,7 @@ public class Client {
             // We do this so the option flags can appear in any order, before or after the city and state.
             String place_arguments[] = new String[NUM_REQUIRED_ARGUMENTS]; 
             int place_arguments_index =0;
+
             for (int i =0; i < args.length; i++) {
                 // If it starts with '-', it is an option flag.
                 if (args[i].charAt(0) == '-') {
@@ -50,8 +51,11 @@ public class Client {
                         default:
                             PrintHelpAndExit();
                     } 
+
                     // If it isn't an option flag, it must be one of of our place arguments.
-                } else {
+                }
+                
+                else {
                     // If we've already seen all our arguments, we have too many.
                     if (place_arguments_index >= NUM_REQUIRED_ARGUMENTS) {
                         PrintHelpAndExit();
@@ -70,13 +74,15 @@ public class Client {
             // Connect to Airport server
             url = "//" + host + ":" + port + "/AirportSearch";
             System.out.println("looking up " + url);
-            AirportsInterface airports = (AirportsInterface)Naming.lookup(url);
+            AirportsInterface airports = (AirportsInterface) Naming.lookup(url);
 
+            // Find place
             Place place = places.find_place(city, state);
 
             if (place != null) {
                 System.out.println(place.getName() + ", " + place.getState() + "\t" + place.getLatitude() + ", " + place.getLongitude()); 
 
+                // Get nearby airports
                 Airport list = airports.find_airports(place.getLatitude(), place.getLongitude());
 
                 if (list != null) {
