@@ -19,12 +19,12 @@ public class PlacesServer{
         if (System.getSecurityManager() == null)
             System.setSecurityManager(new RMISecurityManager());
         try {
-            String url = "//localhost:" + port + "/PlacesSearch";
-            Naming.rebind(url, new PlacesSearch());
+            String url = "//localhost:" + port + "/Places";
+            Naming.rebind(url, new Places());
             System.out.println("server " + url + " is running...");
         }
         catch (Exception e) {
-            System.err.println("PlacesSearch server failed:" + e.getMessage());
+            System.err.println("Places server failed:" + e.getMessage());
                         e.printStackTrace();
             System.exit(1);
         }

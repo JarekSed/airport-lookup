@@ -11,7 +11,7 @@ import java.util.Comparator;
  * Search backend for Places. When given a city and state, finds and returns information on it.
  * Keeps an in-memory lookup table of all our known places and their data.
  */
-public class PlacesSearch extends UnicastRemoteObject implements PlacesInterface{
+public class Places extends UnicastRemoteObject implements PlacesInterface{
 
 
     /* Comparator for the TreeMap of places in each state.
@@ -26,7 +26,7 @@ public class PlacesSearch extends UnicastRemoteObject implements PlacesInterface
     }
 
 
-    public PlacesSearch() throws RemoteException {
+    public Places() throws RemoteException {
         try{
             // Build our lookup table from the places data file.
             lookup_table = parse_places_file("places2k.txt");
