@@ -61,6 +61,19 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
       airport_pointer = airport_pointer.next;
     }
 
+    // Reverse result_list so the closest airport is first.
+	Airport old_head = result_list;
+	Airport temp_head = null;
+	result_list = null;
+
+	while (old_head != null)
+	{
+		temp_head = old_head;
+		old_head = old_head.next;
+		temp_head.next = result_list;
+		result_list = temp_head;
+	}
+
     return result_list;
   }
 
