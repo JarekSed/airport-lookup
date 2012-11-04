@@ -82,8 +82,9 @@ public class Client {
                 if (list != null) {
                     do {
                         System.out.println(
-                                "code=" + list.getCode() + " name=" + list.getName() +
-                                " distance=" + list.getDistance()
+                                "code=" + list.getCode() + ", name=" + list.getName() +
+                                ", state=" + list.getState() +
+                                ", distance=" + list.getDistance()
                                 );
 
                         list = list.next;

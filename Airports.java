@@ -26,7 +26,7 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
     // list and creates a list of 5 "blank" airports, to start off with.
     result_list = null;
     for (int i = 0; i < 5; i++)
-      result_list = new Airport("", "", 0, 0, 999999999, result_list);
+      result_list = new Airport("", "", "", 0, 0, 999999999, result_list);
 
     // Run through airport_list and compare entries to the given coordinates
     Airport airport_pointer = airport_list;
@@ -45,7 +45,7 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
           result_pointer = result_pointer.next;}
 
         // Add the new airport
-        result_pointer.next = new Airport(airport_pointer.getCode(), airport_pointer.getName(), airport_pointer.getLatitude(), airport_pointer.getLongitude(), distance, result_pointer.next);
+        result_pointer.next = new Airport(airport_pointer.getCode(), airport_pointer.getName(), airport_pointer.getState(), airport_pointer.getLatitude(), airport_pointer.getLongitude(), distance, result_pointer.next);
 
         // Nuke the furthest entry from the results list (to maintain only 5)
         result_list = result_list.next;
@@ -66,8 +66,8 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
 
     // Read file line by line, skip the first. Populate airport_list
     String line = br.readLine();
-    String temp_s;
-    int temp_i;
+    String temp_s, name, state;
+    int temp_index;
     int line_number = 1;
     double air_lat, air_lon;
 
@@ -80,17 +80,23 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
 
       // Parse the line and retrieve details about the airport
       temp_s = line.substring(6);
-      temp_i = temp_s.indexOf(' ');
-      air_lat = Double.parseDouble(temp_s.substring(0, temp_i));
-      temp_s = temp_s.substring(temp_i).trim();
-      temp_i = temp_s.indexOf(' ');
-      air_lon = Double.parseDouble(temp_s.substring(0, temp_i));
+      temp_index = temp_s.indexOf(' ');
+      air_lat = Double.parseDouble(temp_s.substring(0, temp_index));
+      temp_s = temp_s.substring(temp_index).trim();
+      temp_index = temp_s.indexOf(' ');
+      air_lon = Double.parseDouble(temp_s.substring(0, temp_index));
+
+      // Parse the locality's name
+      name = temp_s.substring(temp_index).trim();
+      temp_index = name.length();
+      state = name.substring(temp_index - 2);
+      name = name.substring(0, temp_index - 3);
 
       // Add the airport to beginning of airport_list
-      airport_list = new Airport(line.substring(1, 4), temp_s.substring(temp_i).trim(), air_lat, air_lon, 0, airport_list);
+      airport_list = new Airport(line.substring(1, 4), name, state, air_lat, air_lon, 0, airport_list);
 
       // @TODO Debug code
-      //System.out.println(line_number + " '" + temp_s.substring(temp_i).trim() + "' '" + air_lat + "' '" + air_lon/* + "' Distance:" + distance*/);
+      //System.out.println(line_number + " '" + name + "' '" + state + "' '" + air_lat + "' '" + air_lon);
 
       // @TODO Debug code
       /*if (line_number > 50)
