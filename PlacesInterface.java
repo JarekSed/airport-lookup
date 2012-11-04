@@ -10,5 +10,5 @@ public interface PlacesInterface extends Remote {
      * @param  state the state to search for
      * @return Place information for the queried place, or null if no data was found.
      */
-	public Place find_place(String city, String state) throws RemoteException;
+    public Place find_place(String city, String state) throws RemoteException;
 }
