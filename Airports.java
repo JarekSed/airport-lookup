@@ -6,7 +6,6 @@ import java.text.ParseException;
 /*
  * Search backend for Airports.
  */
-
 public class Airports extends UnicastRemoteObject implements AirportsInterface {
     public Airports() throws RemoteException {
         try{
@@ -18,7 +17,7 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
         }
     }
 
-    // Stores a full list of airports, populated from a specified txt file 
+    // Stores a full list of airports
     private Airport airport_list = null;
 
     // A sorted list containing the 5 closest airports to a specified set of coordinates
@@ -66,19 +65,18 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
         Airport temp_head = null;
         result_list = null;
 
-        while (old_head != null)
-        {
-                temp_head = old_head;
-                old_head = old_head.next;
-                temp_head.next = result_list;
-                result_list = temp_head;
+        while (old_head != null) {
+            temp_head = old_head;
+            old_head = old_head.next;
+            temp_head.next = result_list;
+            result_list = temp_head;
         }
 
         return result_list;
     }
 
     /*
-     * Read the specifed file line by line and populate airport_list will all airports.
+     * Reads the specifed file line by line and populate airport_list will all airports.
      */
     private void parse_airport_file(String file_path) throws IOException,ParseException
     {
@@ -116,15 +114,6 @@ public class Airports extends UnicastRemoteObject implements AirportsInterface {
 
             // Add the airport to beginning of airport_list
             airport_list = new Airport(line.substring(1, 4), name, state, air_lat, air_lon, 0, airport_list);
-
-            // @TODO Debug code
-            //System.out.println(line_number + " '" + name + "' '" + state + "' '" + air_lat + "' '" + air_lon);
-
-            // @TODO Debug code
-            /*if (line_number > 50)
-            {
-                break;
-            }*/
         }
 
         // Close the input stream from above

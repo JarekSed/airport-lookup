@@ -67,7 +67,7 @@ public class Client {
             String state = place_arguments[1];
 
             // Connect to Places server
-            String url = "//" + host + ":" + port + "/PlacesSearch";
+            String url = "//" + host + ":" + port + "/Places";
             System.out.println("looking up " + url);
             PlacesInterface places = (PlacesInterface)Naming.lookup(url);
 
